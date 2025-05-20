@@ -82,6 +82,7 @@
 				<configuration>
 					<source>21</source>  <!-- Ensure this is set to 21 -->
 					<target>21</target>  <!-- Ensure this is set to 21 -->
+					<release>21</release>
 				</configuration>
 			</plugin>
 		</plugins>
