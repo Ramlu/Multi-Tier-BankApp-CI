@@ -161,5 +161,22 @@ pipeline {
                 }
             }
         }
+        success {
+            script {
+                def msg = "*SUCCESS:* Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]' for ENV: `${params.ENV}` succeeded.\n<${env.BUILD_URL}|View Build>"
+                mail to: 'naveenramlu@example.com',
+                     subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${params.ENV}",
+                     body: "The build completed successfully.\n\nView build: ${env.BUILD_URL}"
+            }
+        }
+
+        failure {
+            script {
+                def msg = "*FAILURE:* Job '${env.JOB_NAME} [#${env.BUILD_NUMBER}]' for ENV: `${params.ENV}` failed!\n<${env.BUILD_URL}|View Build>"
+                mail to: 'naveenramlu@example.com',
+                     subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${params.ENV}",
+                     body: "The build failed.\n\nCheck logs: ${env.BUILD_URL}"
+            }
+        }
     }
 }
